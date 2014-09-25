@@ -6,6 +6,3 @@ script:
 notifications:
   irc: "irc.freenode.org#aerogear"
 
-branches:
-  only:
-    - master
