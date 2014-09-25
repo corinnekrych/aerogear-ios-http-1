@@ -1,8 +1,2 @@
 language: objective-c
-
-script:
-    - xcodebuild -scheme AeroGearHttpTests clean test
-
-notifications:
-  irc: "irc.freenode.org#aerogear"
-
+script: xcodebuild test -scheme AeroGearHttpTests
