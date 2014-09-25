@@ -7,7 +7,7 @@ Taking care of:
 * Multipart upload, 
 * Pluggable object serialization.
 
-100% Swift!
+100% Swift!!!!!1
 
 ## Example Usage
 
