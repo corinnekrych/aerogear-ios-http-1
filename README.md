@@ -1,4 +1,5 @@
 # aerogear-ios-http
+
 Thin layer to take care of your http requests working with NSURLSession. 
 Taking care of: 
 
@@ -6,7 +7,7 @@ Taking care of:
 * Multipart upload, 
 * Pluggable object serialization.
 
-100% Swift.
+100% Swift!
 
 ## Example Usage
 
