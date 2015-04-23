@@ -514,10 +514,12 @@ public class Http {
             }
             
             var response = task.response as! NSHTTPURLResponse
-            
-            if  let downloadTask = task as? NSURLSessionDownloadTask {
-                completionHandler?(response, error)
-                return
+            let downloadTask = task as? NSURLSessionDownloadTask
+            if  downloadTask != nil {
+                if downloadTask!.respondsToSelector(Selector("cancelByProducingResumeData:")) {
+                    completionHandler?(response, error)
+                    return                }
+                
             }
             
             var error: NSError?
