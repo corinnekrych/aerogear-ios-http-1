@@ -32,9 +32,9 @@ class RequestSerializerTests: XCTestCase {
     }
     
     func testGETWithParameters() {
-        var url = "http://api.icndb.com/jokes/12"
-        var serialiser = JsonRequestSerializer()
-        var result = serialiser.request(NSURL(string: url)!, method:.GET, parameters: ["param1": "value1", "array": ["one", "two", "three", "four"], "numeric": 5])
+        let url = "http://api.icndb.com/jokes/12"
+        let serialiser = JsonRequestSerializer()
+        let result = serialiser.request(NSURL(string: url)!, method:.GET, parameters: ["param1": "value1", "array": ["one", "two", "three", "four"], "numeric": 5])
         if let urlString:NSString = result.URL!.absoluteString {
             XCTAssertTrue(urlString.containsString("param1=value1"))
             XCTAssertTrue(urlString.containsString("numeric=5"))
@@ -45,8 +45,7 @@ class RequestSerializerTests: XCTestCase {
     }
     
     func testStringResponseSerializer() {
-        var url = NSURL(string: "http://api.icndb.com/jokes/12")
-        var serialiser = StringResponseSerializer()
+        let serialiser = StringResponseSerializer()
         
         let result: String? = serialiser.response("some text received".dataUsingEncoding(NSUTF8StringEncoding)!) as? String
         XCTAssertTrue(result == "some text received")
