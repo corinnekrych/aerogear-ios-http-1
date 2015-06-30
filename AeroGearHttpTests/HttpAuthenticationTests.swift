@@ -28,7 +28,7 @@ class HttpAuthenticationTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
-    
+/*
     func testHTTPBasicAuthenticationWithValidCredentials() {
         // async test expectation
         let getExpectation = expectationWithDescription("HTTPBasicAuthentication with valid credentials");
@@ -152,5 +152,6 @@ class HttpAuthenticationTests: XCTestCase {
         
         waitForExpectationsWithTimeout(300, handler: nil)
     }
+*/
     
 }

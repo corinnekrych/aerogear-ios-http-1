@@ -518,12 +518,25 @@ public class Http {
                 return
             }
             
+            /* iOS8 code
             let response = task.response as! NSHTTPURLResponse
             
             if  let _ = task as? NSURLSessionDownloadTask {
                 completionHandler?(response, error)
                 return
             }
+            */
+            
+            // ios7
+            let response = task.response as! NSHTTPURLResponse
+            let downloadTask = task as? NSURLSessionDownloadTask
+            if  downloadTask != nil {
+                if downloadTask!.respondsToSelector(Selector("cancelByProducingResumeData:")) {
+                    completionHandler?(response, error)
+                    return
+                }
+            }
+            //end ios7
             
             var responseObject: AnyObject? = nil
             do {
