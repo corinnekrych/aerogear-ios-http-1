@@ -77,6 +77,7 @@ public typealias CompletionBlock = (AnyObject?, NSError?) -> Void
 /**
 Main class for performing HTTP operations across RESTful resources.
 */
+@objc
 public class Http {
     
     var baseURL: String?
