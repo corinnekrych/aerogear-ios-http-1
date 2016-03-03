@@ -33,13 +33,19 @@ class HttpTests: XCTestCase {
     func testCalculateURLWithoutSlash() {
         let http = Http()
         let finalURL = http.calculateURL("http://whatever.com", url: "/post")
-        XCTAssertEqual(finalURL.absoluteString, "http://whatever.com/post")
+        XCTAssertEqual(finalURL!.absoluteString, "http://whatever.com/post")
     }
     
     func testCalculateURLWithLeadingSlash() {
         let http = Http()
         let finalURL = http.calculateURL("http://whatever.com/", url: "/post")
-        XCTAssertEqual(finalURL.absoluteString, "http://whatever.com/post")
+        XCTAssertEqual(finalURL!.absoluteString, "http://whatever.com/post")
+    }
+    
+    func testCalculateURLWithMalformedURL() {
+        let http = Http()
+        let finalURL = http.calculateURL("replace me", url: "/box/init")
+        XCTAssertNil(finalURL)
     }
     
     func testSucessfulGET() {
@@ -52,9 +58,9 @@ class HttpTests: XCTestCase {
         // async test expectation
         let getExpectation = expectationWithDescription("GET http method test");
         http.request(.GET, path: "/get", completionHandler: {(response, error) in
-                XCTAssertNil(error, "error should be nil")
-                XCTAssertTrue(response!["key"] == "value")
-                getExpectation.fulfill()
+            XCTAssertNil(error, "error should be nil")
+            XCTAssertTrue(response!["key"] == "value")
+            getExpectation.fulfill()
         })
         waitForExpectationsWithTimeout(10, handler: nil)
     }
@@ -109,7 +115,7 @@ class HttpTests: XCTestCase {
         })
         waitForExpectationsWithTimeout(10, handler: nil)
     }
-
+    
     func testSucessfulMultipartUploadWithPOST() {
         // set up http stub
         stub(isHost("whatever.com")) { _ in
@@ -133,7 +139,7 @@ class HttpTests: XCTestCase {
         })
         waitForExpectationsWithTimeout(10, handler: nil)
     }
-
+    
     func testSucessfulDownloadWithDefaultDestinationDirectory() {
         // set up http stub
         stub(isHost("whatever.com")) { _ in
